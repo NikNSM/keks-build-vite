@@ -1,39 +1,15 @@
-export default function MapListAddresses(): JSX.Element {
+import { TypeDataMarker } from '../../../../type/type-data';
+import ElementListAddreses from './element-list-addreses';
+type TypeMapListAddresseProps = {
+  shops: TypeDataMarker[];
+  activeShop: TypeDataMarker;
+  onChangeElement: (value: string) => void;
+}
+
+export default function MapListAddresses({ shops, activeShop, onChangeElement }: TypeMapListAddresseProps): JSX.Element {
   return (
-    <ul className="map__addresses">
-      <li className="map__address">
-        <div className="custom-toggle custom-toggle--radio custom-toggle--address">
-          <input type="radio" value="user-agreement-10" id="user-agreement-id-10" name="user-agreement" />
-          <label className="custom-toggle__label" htmlFor="user-agreement-id-10">Кондитерская 1</label>
-          <address className="custom-toggle__address">Морской пр. 2А
-            <svg className="custom-toggle__icon" width="26" height="24" aria-hidden="true">
-              <use xlinkHref="#icon-keks-footprint"></use>
-            </svg>
-          </address>
-        </div>
-      </li>
-      <li className="map__address">
-        <div className="custom-toggle custom-toggle--radio custom-toggle--address">
-          <input type="radio" value="user-agreement-12" id="user-agreement-id-12" name="user-agreement" checked />
-          <label className="custom-toggle__label" htmlFor="user-agreement-id-12">Кондитерская 2</label>
-          <address className="custom-toggle__address">Морской пр. 2А
-            <svg className="custom-toggle__icon" width="26" height="24" aria-hidden="true">
-              <use xlinkHref="#icon-keks-footprint"></use>
-            </svg>
-          </address>
-        </div>
-      </li>
-      <li className="map__address">
-        <div className="custom-toggle custom-toggle--radio custom-toggle--address">
-          <input type="radio" value="user-agreement-13" id="user-agreement-id-13" name="user-agreement" />
-          <label className="custom-toggle__label" htmlFor="user-agreement-id-13">Производство</label>
-          <address className="custom-toggle__address">Морской пр. 2А
-            <svg className="custom-toggle__icon" width="26" height="24" aria-hidden="true">
-              <use xlinkHref="#icon-keks-footprint"></use>
-            </svg>
-          </address>
-        </div>
-      </li>
+    <ul className="map__addresses" >
+      {shops.map((shop) => (< ElementListAddreses key={`key-${shop.value}`} shop={shop} activeShop={activeShop} onChange={onChangeElement} />))}
     </ul>
   );
 }

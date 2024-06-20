@@ -81,3 +81,11 @@ export type TypeUser = {
   avatarUrl: string;
   token: string;
 };
+
+export type TypeDataMarker = {
+  value: string;
+  lat: number;
+  lng: number;
+  type: 'production' | 'confectionery';
+  name: string;
+};
