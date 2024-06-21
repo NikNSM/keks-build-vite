@@ -70,7 +70,7 @@ export type TypeFeedback = {
   user: TypeUserFeedback;
   positive: string;
   negative: string;
-  reating: number;
+  rating: number;
 };
 
 export type TypeListFeedback = TypeFeedback[];
