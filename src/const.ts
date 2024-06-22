@@ -26,3 +26,8 @@ export enum AutorizationStatus {
   NO_AUTORIZATION = 'no autorization',
   AUTORIZATION = 'autorization',
 }
+
+export enum FormateDate {
+  dateLastReview = 'DD.MM',
+  dateLastReviewTagDataTime = 'YYYY-MM-DD',
+}

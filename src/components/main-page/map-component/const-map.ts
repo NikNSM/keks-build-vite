@@ -30,5 +30,5 @@ export const storeMapMarkerData: TypeDataMarker[] = [
 export const cityCenter = {
   lat: 59.970969,
   lng: 30.316252,
-  zoom: 5,
+  zoom: 12,
 };

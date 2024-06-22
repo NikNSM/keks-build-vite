@@ -3,8 +3,19 @@ import ListProductsMainPage from './list-products/list-products';
 import LastReview from './last-review/last-review';
 import Footer from './footer/footer';
 import MapComponent from './map-component/map-components';
+import { useEffect } from 'react';
+import { useAppDispatch } from '../../utils';
+import { getLastReview } from '../../store/reviews-slice/api-review-action';
+import { getListProducts } from '../../store/product-slice/api-product-action';
 
 export default function MainPage(): JSX.Element {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getLastReview());
+    dispatch(getListProducts());
+  }, [dispatch]);
+
   return (
     <div className="wrapper">
       <Header />

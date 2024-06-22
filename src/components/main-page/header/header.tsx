@@ -1,4 +1,4 @@
-import { useAppSelector } from '../../../utils-redux-hook';
+import { useAppSelector } from '../../../utils';
 import { AutorizationStatus } from '../../../const';
 
 export default function Header(): JSX.Element {

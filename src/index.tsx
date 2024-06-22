@@ -10,6 +10,7 @@ const root = ReactDOM.createRoot(
 );
 
 store.dispatch(checkAutorizationUser());
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>
