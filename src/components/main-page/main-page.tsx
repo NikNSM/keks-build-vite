@@ -1,7 +1,5 @@
-import Header from './header/header';
 import ListProductsMainPage from './list-products/list-products';
 import LastReview from './last-review/last-review';
-import Footer from './footer/footer';
 import MapComponent from './map-component/map-components';
 import { useEffect } from 'react';
 import { useAppDispatch } from '../../utils';
@@ -18,7 +16,6 @@ export default function MainPage(): JSX.Element {
 
   return (
     <div className="wrapper">
-      <Header />
       <main>
         <div className="hero">
           <div className="container">
@@ -42,7 +39,6 @@ export default function MainPage(): JSX.Element {
           <MapComponent />
         </section>
       </main>
-      <Footer />
     </div>
   );
 }
