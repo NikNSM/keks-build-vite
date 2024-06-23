@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { TypeUser, TypeUserDataAutoriztion } from '../../type/type-data';
 import { AxiosError, AxiosInstance } from 'axios';
-import { ApiRoute, TIME_SHOW_MESSAGE } from '../../const';
+import { AddressesRoute, ApiRoute, TIME_SHOW_MESSAGE } from '../../const';
 import { dropToken, saveToken } from '../../service/token';
 import { TypeAutorizationRequestUser } from '../../type/type-data';
 import { TypeAppDispatch } from '../../type/type-redux';
@@ -11,6 +11,7 @@ import {
   changeRegistration,
   changeAutorization,
 } from './user-slice';
+import { redirectToRoute } from '../middleware/action-redirect/action-redirect';
 type TypeUserData = Omit<TypeUser, 'token'>;
 
 export const checkAutorizationUser = createAsyncThunk<
@@ -136,6 +137,7 @@ export const autorizationUser = createAsyncThunk<
         data: { token, ...user },
       } = await api.post<TypeUser>(ApiRoute.AUTORIZATION, arg);
       saveToken(token);
+      dispatch(redirectToRoute(AddressesRoute.Main));
       return user;
     } catch (err) {
       const error = err as AxiosError<TypeError>;
