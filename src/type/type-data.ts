@@ -96,3 +96,8 @@ export type TypeAutorizationRequestUser = {
   password: string;
   avatar: File | null;
 };
+
+export type TypeUserDataAutoriztion = {
+  email: string;
+  password: string;
+};

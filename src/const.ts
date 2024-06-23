@@ -25,6 +25,7 @@ export enum AutorizationStatus {
   UNKNOW = 'unknow',
   NO_AUTORIZATION = 'no autorization',
   AUTORIZATION = 'autorization',
+  ERROR = 'error',
 }
 
 export enum FormateDate {

@@ -5,6 +5,8 @@ import {
   checkAutorizationUser,
   registrationUser,
   loadingUserAvatar,
+  autorizationUser,
+  logOutUser,
 } from './api-action';
 
 type TypeInitialStateUsers = {
@@ -39,6 +41,9 @@ const usersSlice = createSlice({
     changeError: (state) => {
       state.error = '';
     },
+    changeAutorization: (state) => {
+      state.status = AutorizationStatus.NO_AUTORIZATION;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -63,6 +68,9 @@ const usersSlice = createSlice({
           state.error = action.payload.message;
         }
       })
+      .addCase(loadingUserAvatar.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(loadingUserAvatar.fulfilled, (state) => {
         state.loading = false;
         state.avatarLoadig = true;
@@ -72,9 +80,37 @@ const usersSlice = createSlice({
           state.loading = false;
           state.error = action.payload.message;
         }
+      })
+      .addCase(autorizationUser.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(autorizationUser.fulfilled, (state, action) => {
+        state.users = action.payload;
+        state.status = AutorizationStatus.AUTORIZATION;
+        state.loading = false;
+      })
+      .addCase(autorizationUser.rejected, (state, action) => {
+        if (action.payload) {
+          state.loading = false;
+          state.status = AutorizationStatus.ERROR;
+          state.error = action.payload.message;
+        }
+      })
+      .addCase(logOutUser.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(logOutUser.fulfilled, (state) => {
+        state.status = AutorizationStatus.NO_AUTORIZATION;
+        state.users = {
+          name: '',
+          email: '',
+          avatarUrl: '',
+        };
+        state.loading = false;
       });
   },
 });
 
 export const reducersUsers = usersSlice.reducer;
-export const { changeRegistration, changeError } = usersSlice.actions;
+export const { changeRegistration, changeError, changeAutorization } =
+  usersSlice.actions;

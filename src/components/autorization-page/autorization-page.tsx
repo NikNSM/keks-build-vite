@@ -110,8 +110,7 @@ export default function AutorizationPage(): JSX.Element {
             <p className="register-page__text-wrap">Уже зарегистрированы?
               <Link className="register-page__link" to={AddressesRoute.LogIn}>
                 Войдите
-              </ Link>
-              в свой аккаунт.
+              </ Link> в свой аккаунт.
             </p>
           </div>
         </div>
