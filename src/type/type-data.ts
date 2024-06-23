@@ -89,3 +89,10 @@ export type TypeDataMarker = {
   type: 'production' | 'confectionery';
   name: string;
 };
+
+export type TypeAutorizationRequestUser = {
+  name: string;
+  email: string;
+  password: string;
+  avatar: File | null;
+};

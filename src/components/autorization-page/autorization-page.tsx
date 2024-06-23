@@ -1,7 +1,89 @@
-import { AddressesRoute } from '../../const';
+import { useEffect, useState } from 'react';
+import { AddressesRoute, RegistrationStatus } from '../../const';
 import { Link } from 'react-router-dom';
+import NameComponents from './name-components/name-components';
+import MailComponent from './mail-component/mail.component';
+import PasswordComponent from './password-component/password-component';
+import AvatarComponent from './avatar-component/avatar-component';
+import ButtonSubmit from './button-submit/button-submit';
+import MessageComponent from './message-component/message-component';
+import { registrationUser } from '../../store/users-slice/api-action';
+import { useAppDispatch, useAppSelector } from '../../utils';
+
+export type TypeValidateAutorizationPage = {
+  validName: boolean;
+  validEmail: boolean;
+  validPassword: boolean;
+  validAvatar: boolean | null;
+}
+
+export type TypeFormAutorizationPage = {
+  name: string;
+  email: string;
+  password: string;
+  avatar: null | File;
+}
+
 
 export default function AutorizationPage(): JSX.Element {
+  const regexpPassword = /^\w*([a-z]+\d+|\d+[a-z]+)+\w*$/i;
+  const regexpEmail = /^\w+([.-]?\w+)@\w+([.-]?\w+).\w{2,3}$/i;
+  const regexpName = /^[a-zа-яё]+$/i;
+  const registrationStatus = useAppSelector((state) => state.user.registrationStatus);
+  const dispatch = useAppDispatch();
+  const [formData, setFormData] = useState<TypeFormAutorizationPage>({
+    name: '',
+    email: '',
+    password: '',
+    avatar: null,
+  });
+
+  const [validate, setValidate] = useState<TypeValidateAutorizationPage>({
+    validName: false,
+    validEmail: false,
+    validPassword: false,
+    validAvatar: null,
+  });
+
+  const handerSubmitForm = () => {
+    if (!validate.validPassword) {
+
+      return;
+    }
+
+    if (!validate.validEmail) {
+      return;
+    }
+
+    if (!validate.validName) {
+      return;
+    }
+
+    if (validate.validAvatar === false) {
+      return;
+    }
+
+    dispatch(registrationUser(formData));
+  };
+
+  useEffect(() => {
+    if (registrationStatus === RegistrationStatus.SUCCESSFULLY) {
+      setFormData({
+        name: '',
+        email: '',
+        password: '',
+        avatar: null,
+      });
+
+      setValidate({
+        validName: false,
+        validEmail: false,
+        validPassword: false,
+        validAvatar: null,
+      });
+    }
+  }, [registrationStatus]);
+
   return (
     <main>
       <section className="register-page">
@@ -15,29 +97,14 @@ export default function AutorizationPage(): JSX.Element {
             <h1 className="register-page__title">Регистрация</h1>
             <div className="register-page__form">
               <form action="#" method="post" autoComplete="off">
-                <div className="register-page__fields">
-                  <div className="custom-input register-page__field">
-                    <label><span className="custom-input__label">Введите ваше имя</span>
-                      <input type="text" name="user-name-1" placeholder="Имя" required />
-                    </label>
-                  </div>
-                  <div className="custom-input register-page__field">
-                    <label><span className="custom-input__label">Введите вашу почту</span>
-                      <input type="email" name="user-mail-1" placeholder="Почта" required />
-                    </label>
-                  </div>
-                  <div className="custom-input register-page__field">
-                    <label><span className="custom-input__label">Введите ваш пароль</span>
-                      <input type="password" name="user-password-1" placeholder="Пароль" required />
-                    </label>
-                  </div>
-                  <div className="custom-input register-page__field">
-                    <label><span className="custom-input__label">Введите ваше имя</span>
-                      <input type="file" name="user-name-1" data-text="Аватар" accept="image/jpeg" />
-                    </label>
-                  </div>
+                <div className="register-page__fields " >
+                  <NameComponents validate={validate} formData={formData} regexpName={regexpName} setValidate={setValidate} setFormData={setFormData} />
+                  <MailComponent validate={validate} formData={formData} regexpEmail={regexpEmail} setValidate={setValidate} setFormData={setFormData} />
+                  <PasswordComponent validate={validate} formData={formData} regexpPassword={regexpPassword} setValidate={setValidate} setFormData={setFormData} />
+                  <AvatarComponent validate={validate} formData={formData} setFormData={setFormData} setValidate={setValidate} />
                 </div>
-                <button className="btn register-page__btn btn--large" type="submit">Зарегистрироваться</button>
+                <ButtonSubmit handerSubmitForm={handerSubmitForm} validate={validate} />
+                <MessageComponent />
               </form>
             </div>
             <p className="register-page__text-wrap">Уже зарегистрированы?
@@ -49,6 +116,6 @@ export default function AutorizationPage(): JSX.Element {
           </div>
         </div>
       </section>
-    </main>
+    </main >
   );
 }

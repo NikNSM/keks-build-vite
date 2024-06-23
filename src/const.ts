@@ -31,3 +31,13 @@ export enum FormateDate {
   dateLastReview = 'DD.MM',
   dateLastReviewTagDataTime = 'YYYY-MM-DD',
 }
+
+export enum RegistrationStatus {
+  UNKNOW = 'unknow',
+  ERROR = 'error',
+  SUCCESSFULLY = 'successfully',
+}
+
+export const MAX_SIZE_IMAGE_AVATAR = 1048576;
+
+export const TIME_SHOW_MESSAGE = 3000;
