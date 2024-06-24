@@ -8,12 +8,22 @@ import Page404 from '../page-404/page-404';
 import HistoryRouter from '../history-route/historry-route';
 import browserHistory from '../../browser-history';
 import PrivateRouteLoginSignup from '../private-rout/private-route-login-signup/private-route-login-signup';
+import PrivateRouteFavorite from '../private-rout/private-route-favorite/private-route-favorite';
+import FavoritePage from '../favorite-page/favorite-page';
+
 export default function App(): JSX.Element {
   return (
     <HistoryRouter history={browserHistory}>
       <Routes>
         <Route path={AddressesRoute.Main} element={<Layout />}>
           <Route index element={<MainPage />} />
+          <Route path={AddressesRoute.Favorite} element={
+            <PrivateRouteFavorite>
+              <FavoritePage />
+            </ PrivateRouteFavorite>
+          }
+          >
+          </Route>
         </ Route>
         <Route path={AddressesRoute.SignUp} element={
           <PrivateRouteLoginSignup>

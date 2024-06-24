@@ -39,7 +39,7 @@ export default function HeaderAutorization(): JSX.Element {
           <div className="header__buttons">
             {loadinFavoriteList ?
               <div className="loader" /> :
-              <a className="header__favourite" href="#">
+              <Link to={AddressesRoute.Favorite} className="header__favourite" >
                 <span className="header__favourite-icon">
                   <svg width="33" height="29" aria-hidden="true">
                     <use xlinkHref="#icon-favourite"></use>
@@ -47,7 +47,7 @@ export default function HeaderAutorization(): JSX.Element {
                 </span>
                 <span className="header__favourite-number">{listFavorite.length}</span>
                 <span className="visually-hidden">Избранное</span>
-              </a>}
+              </Link>}
             <div className="header__buttons-authorized">
               <div
                 className={classButton}
