@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../../utils';
+import { AddressesRoute } from '../../../const';
 
 export default function TotalPriceComponent(): JSX.Element {
   const listProduct = useAppSelector((state) => state.product.favoriteProducts);
@@ -15,7 +17,7 @@ export default function TotalPriceComponent(): JSX.Element {
           </div>
         </div>
         <div className="number-of-favourites__button">
-          <a className="btn" href="catalog.html">В каталог</a>
+          <Link to={AddressesRoute.Catalog} className="btn">В каталог</ Link>
         </div>
       </div>
     </section>

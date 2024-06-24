@@ -5,7 +5,8 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../utils';
 import { getLastReview } from '../../store/reviews-slice/api-review-action';
 import { getFavoriteProducts, getListProducts } from '../../store/product-slice/api-product-action';
-import { AutorizationStatus } from '../../const';
+import { AddressesRoute, AutorizationStatus } from '../../const';
+import { Link } from 'react-router-dom';
 
 export default function MainPage(): JSX.Element {
   const statusAutorization = useAppSelector((state) => state.user.status);
@@ -33,7 +34,7 @@ export default function MainPage(): JSX.Element {
               <p className="hero__subtitle">Твоя пушистая кондитерская</p>
               <p className="hero__title">КЕКС</p>
               <div className="hero__button-wrapper">
-                <a className="btn" href="catalog-page.html">Скорее смотреть</a>
+                <Link to={AddressesRoute.Catalog} className="btn">Скорее смотреть</Link>
               </div>
             </div>
           </div>

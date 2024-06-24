@@ -10,6 +10,7 @@ import browserHistory from '../../browser-history';
 import PrivateRouteLoginSignup from '../private-rout/private-route-login-signup/private-route-login-signup';
 import PrivateRouteFavorite from '../private-rout/private-route-favorite/private-route-favorite';
 import FavoritePage from '../favorite-page/favorite-page';
+import CatalogPage from '../catalog-page/catalog-page';
 
 export default function App(): JSX.Element {
   return (
@@ -17,6 +18,7 @@ export default function App(): JSX.Element {
       <Routes>
         <Route path={AddressesRoute.Main} element={<Layout />}>
           <Route index element={<MainPage />} />
+          <Route path={AddressesRoute.Catalog} element={<CatalogPage />} />
           <Route path={AddressesRoute.Favorite} element={
             <PrivateRouteFavorite>
               <FavoritePage />

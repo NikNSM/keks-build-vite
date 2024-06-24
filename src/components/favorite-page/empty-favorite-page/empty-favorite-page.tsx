@@ -1,3 +1,6 @@
+import { Link } from 'react-router-dom';
+import { AddressesRoute } from '../../../const';
+
 export default function EmptyFavoritePage(): JSX.Element {
   return (
     <main>
@@ -22,7 +25,7 @@ export default function EmptyFavoritePage(): JSX.Element {
               <div className="empty-favorites__content">
                 <p className="empty-favorites__text">Кажется, пока вы не добавили ни одного кекса</p>
                 <div className="empty-favorites__button-wrapper">
-                  <a className="btn" href="#">К кексам</a>
+                  <Link to={AddressesRoute.Catalog} className="btn" >К кексам</ Link>
                 </div>
               </div>
             </div>
