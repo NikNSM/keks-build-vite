@@ -10,6 +10,7 @@ export const storeMapMarkerData: TypeDataMarker[] = [
     lng: 30.316252,
     type: 'confectionery',
     name: 'Кондитерская 1',
+    address: 'ул. Профессора Попова',
   },
   {
     value: 'confectionery-2',
@@ -17,6 +18,7 @@ export const storeMapMarkerData: TypeDataMarker[] = [
     lng: 30.274708,
     type: 'confectionery',
     name: 'Кондитерская 2',
+    address: 'ул. Вязовая ',
   },
   {
     value: 'production',
@@ -24,6 +26,7 @@ export const storeMapMarkerData: TypeDataMarker[] = [
     lng: 30.308725,
     type: 'production',
     name: 'Производство',
+    address: 'Ул. Ленина, 10 ',
   },
 ];
 

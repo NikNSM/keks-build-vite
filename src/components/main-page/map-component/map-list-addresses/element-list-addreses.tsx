@@ -18,7 +18,7 @@ export default function ElementListAddreses({ shop, activeShop, onChange }: Type
         }}
         />
         <label className="custom-toggle__label" htmlFor={`shop-${shop.value}`}>{shop.name}</label>
-        <address className="custom-toggle__address">Морской пр. 2А
+        <address className="custom-toggle__address">{shop.address}
           <svg className="custom-toggle__icon" width="26" height="24" aria-hidden="true">
             <use xlinkHref="#icon-keks-footprint"></use>
           </svg>

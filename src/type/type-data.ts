@@ -88,6 +88,7 @@ export type TypeDataMarker = {
   lng: number;
   type: 'production' | 'confectionery';
   name: string;
+  address: string;
 };
 
 export type TypeAutorizationRequestUser = {
