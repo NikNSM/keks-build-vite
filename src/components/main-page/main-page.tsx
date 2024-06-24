@@ -2,17 +2,26 @@ import ListProductsMainPage from './list-products/list-products';
 import LastReview from './last-review/last-review';
 import MapComponent from './map-component/map-components';
 import { useEffect } from 'react';
-import { useAppDispatch } from '../../utils';
+import { useAppDispatch, useAppSelector } from '../../utils';
 import { getLastReview } from '../../store/reviews-slice/api-review-action';
-import { getListProducts } from '../../store/product-slice/api-product-action';
+import { getFavoriteProducts, getListProducts } from '../../store/product-slice/api-product-action';
+import { AutorizationStatus } from '../../const';
 
 export default function MainPage(): JSX.Element {
+  const statusAutorization = useAppSelector((state) => state.user.status);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getLastReview());
     dispatch(getListProducts());
+
   }, [dispatch]);
+
+  useEffect(() => {
+    if (statusAutorization === AutorizationStatus.AUTORIZATION) {
+      dispatch(getFavoriteProducts());
+    }
+  }, [statusAutorization, dispatch]);
 
   return (
     <div className="wrapper">

@@ -2,10 +2,12 @@ import { useAppDispatch, useAppSelector } from '../../../../utils';
 import { AddressesRoute } from '../../../../const';
 import { Link } from 'react-router-dom';
 import { logOutUser } from '../../../../store/users-slice/api-action';
-export default function HeaderAutorization(): JSX.Element {
 
+export default function HeaderAutorization(): JSX.Element {
   const user = useAppSelector((state) => state.user.users);
   const loading = useAppSelector((state) => state.user.loading);
+  const loadinFavoriteList = useAppSelector((state) => state.product.loadingFavoriteList);
+  const listFavorite = useAppSelector((state) => state.product.favoriteProducts);
   const dispatch = useAppDispatch();
 
   const handlerClickLogOut = () => {
@@ -35,15 +37,17 @@ export default function HeaderAutorization(): JSX.Element {
             </div>
           </div>
           <div className="header__buttons">
-            <a className="header__favourite" href="#">
-              <span className="header__favourite-icon">
-                <svg width="33" height="29" aria-hidden="true">
-                  <use xlinkHref="#icon-favourite"></use>
-                </svg>
-              </span>
-              <span className="header__favourite-number">2</span>
-              <span className="visually-hidden">Избранное</span>
-            </a>
+            {loadinFavoriteList ?
+              <div className="loader" /> :
+              <a className="header__favourite" href="#">
+                <span className="header__favourite-icon">
+                  <svg width="33" height="29" aria-hidden="true">
+                    <use xlinkHref="#icon-favourite"></use>
+                  </svg>
+                </span>
+                <span className="header__favourite-number">{listFavorite.length}</span>
+                <span className="visually-hidden">Избранное</span>
+              </a>}
             <div className="header__buttons-authorized">
               <div
                 className={classButton}
@@ -51,7 +55,8 @@ export default function HeaderAutorization(): JSX.Element {
                   evt.preventDefault();
                   handlerClickLogOut();
                 }}
-              >{loading ? <div className="loader" /> : <a className="btn btn--second" href="#">Выйти</a>}
+              >
+                {loading ? <div className="loader" /> : <a className="btn btn--second" href="#">Выйти</a>}
               </div>
             </div>
           </div>

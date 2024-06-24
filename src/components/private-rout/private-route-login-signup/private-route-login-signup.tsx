@@ -10,6 +10,6 @@ export default function PrivateRouteLoginSignup({ children }: TypePrivateRouteLo
   const status = useAppSelector((state) => state.user.status);
 
   return (
-    status === AutorizationStatus.NO_AUTORIZATION ? children : <Navigate to={AddressesRoute.Main} />
+    status === AutorizationStatus.NO_AUTORIZATION || status === AutorizationStatus.ERROR ? children : <Navigate to={AddressesRoute.Main} />
   );
 }
